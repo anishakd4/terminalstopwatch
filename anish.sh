@@ -30,41 +30,38 @@ function show_progress {
     fi
 }
 
-tasks_in_total=37
+# tasks_in_total=37
 
-for current_task in $(seq $tasks_in_total) 
-    do
-    sleep 0.2 #simulate the task running
-    show_progress $current_task $tasks_in_total
-done
-
-echo "Stopwatch started. Press [CTRL+C] to stop."
-
-# # Record the start time
-# start_time=$(date +%s)
-
-# # Infinite loop to update the timer
-# while true; do
-#     current_time=$(date +%s)
-#     elapsed=$((current_time - start_time))
-
-#     printf "\n"
-
-#     echo $elapsed
-
-#     if [[ $elapsed -gt 20 ]]; then
-#         echo "Time's up! You took too long."
-#         break
-#     fi
-
-#     printf "\n"
-
-#     hours=$((elapsed / 3600))
-#     minutes=$(((elapsed % 3600) / 60))
-#     seconds=$((elapsed % 60))
-
-#     # Clear the screen and print elapsed time
-#     printf "\rElapsed Time: %02d:%02d:%02d" "$hours" "$minutes" "$seconds"
-
-#     sleep 1  # Update every second
+# for current_task in $(seq $tasks_in_total) 
+#     do
+#     sleep 0.2 #simulate the task running
+#     show_progress $current_task $tasks_in_total
 # done
+
+# echo "Stopwatch started. Press [CTRL+C] to stop."
+
+totaltime=$1
+
+# Record the start time
+start_time=$(date +%s)
+
+# Infinite loop to update the timer
+while true; do
+    current_time=$(date +%s)
+    elapsed=$((current_time - start_time))
+
+    if [[ $elapsed -gt $totaltime ]]; then
+        echo "Time's up! You took too long."
+        break
+    fi
+
+    # hours=$((elapsed / 3600))
+    # minutes=$(((elapsed % 3600) / 60))
+    # seconds=$((elapsed % 60))
+
+    # # Clear the screen and print elapsed time
+    # printf "\rElapsed Time: %02d:%02d:%02d" "$hours" "$minutes" "$seconds"
+
+    sleep 1  # Update every second
+     show_progress $elapsed $totaltime
+done
