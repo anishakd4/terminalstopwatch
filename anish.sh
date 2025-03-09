@@ -4,7 +4,7 @@
 bar_size=$(tput cols)
 num1=30
 bar_size=$((bar_size - num1)) 
-bar_char_done="▉"
+bar_char_done="█"
 bar_char_todo="-"
 bar_percentage_scale=2
 
